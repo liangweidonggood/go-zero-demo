@@ -1,0 +1,8 @@
+Name: order
+Host: 0.0.0.0
+Port: 8888
+MallUserRpc:
+  Etcd:
+    Hosts:
+      - 192.168.160.128:2379
+    Key: mallUser.rpc

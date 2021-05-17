@@ -1,0 +1,12 @@
+Name: check.rpc
+ListenOn: 127.0.0.1:8081
+Etcd:
+  Hosts:
+  - 192.168.160.128:2379
+  Key: check.rpc
+# 新增
+DataSource: root:123@tcp(192.168.160.128:3306)/gozero-book
+Table: book
+Cache:
+  - Host: 192.168.160.128:6379
+    Pass: "ZZkde@#3d99"
