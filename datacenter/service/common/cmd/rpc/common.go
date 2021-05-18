@@ -32,3 +32,15 @@ func main() {
 	fmt.Printf("Starting rpc server at %s...\n", c.ListenOn)
 	s.Start()
 }
+
+/**
+启动
+go run common.go -f etc/common.yaml
+
+etcdctl member list
+etcdctl get datacenterCommon.rpc --prefix
+
+datacenterCommon.rpc/112442081613213983
+127.0.0.1:8080
+
+*/

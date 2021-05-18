@@ -2,5 +2,12 @@ Name: common.rpc
 ListenOn: 127.0.0.1:8080
 Etcd:
   Hosts:
-  - 127.0.0.1:2379
-  Key: common.rpc
+  - 192.168.160.128:2379
+  Key: datacenterCommon.rpc
+#config
+Mysql:
+  DataSource: root:123@tcp(192.168.160.128:3306)/gozero-datacenter?charset=utf8&parseTime=true&loc=Asia%2FShanghai
+CacheRedis:
+  - Host: 192.168.160.128:6379
+    Pass: ZZkde@#3d99
+    Type: node

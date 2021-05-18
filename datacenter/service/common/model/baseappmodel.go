@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/tal-tech/go-zero/core/stores/cache"
 	"github.com/tal-tech/go-zero/core/stores/sqlc"
@@ -35,17 +36,17 @@ type (
 	}
 
 	BaseApp struct {
-		Id          int64          `db:"id"`
-		Logo        sql.NullString `db:"logo"`        // 应用login
-		Sname       string         `db:"sname"`       // 应用名称
-		Isclose     int64          `db:"isclose"`     // 站点是否关闭
-		Fullwebsite string         `db:"fullwebsite"` // 完整的域名
-		Website     string         `db:"website"`     // 站点名称
-		CreateBy    sql.NullString `db:"create_by"`
-		UpdateBy    sql.NullString `db:"update_by"`
-		CreatedAt   sql.NullTime   `db:"created_at"`
-		UpdatedAt   sql.NullTime   `db:"updated_at"`
-		DeletedAt   sql.NullTime   `db:"deleted_at"`
+		Id          int64     `db:"id"`
+		Logo        string    `db:"logo"`        // 应用login
+		Sname       string    `db:"sname"`       // 应用名称
+		Isclose     int64     `db:"isclose"`     // 站点是否关闭
+		Fullwebsite string    `db:"fullwebsite"` // 完整的域名
+		Website     string    `db:"website"`     // 站点名称
+		CreateBy    string    `db:"create_by"`
+		UpdateBy    string    `db:"update_by"`
+		CreatedAt   time.Time `db:"created_at"`
+		UpdatedAt   time.Time `db:"updated_at"`
+		DeletedAt   time.Time `db:"deleted_at"`
 	}
 )
 

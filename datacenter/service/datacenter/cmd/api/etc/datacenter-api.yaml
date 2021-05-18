@@ -9,31 +9,32 @@ Auth:
   AccessSecret: ad87xxxxxxx5d54b7d
   AccessExpire: 86400
 CacheRedis:
-  - Host: 127.0.0.1:6379
-    Pass: admin
+  - Host: 192.168.160.128:6379
+    Pass: ZZkde@#3d99
     Type: node
-UserRpc:
-  Etcd:
-    Hosts:
-      - 127.0.0.1:2379
-    Key: user.rpc
 CommonRpc:
   Etcd:
     Hosts:
-      - 127.0.0.1:2379
-    Key: common.rpc
+      - 192.168.160.128:2379
+    Key: datacenterCommon.rpc
+UserRpc:
+  Etcd:
+    Hosts:
+      - 192.168.160.128:2379
+    Key: user.rpc
+
 VotesRpc:
   Etcd:
     Hosts:
-      - 127.0.0.1:2379
+      - 192.168.160.128:2379
     Key: votes.rpc
 SearchRpc:
   Etcd:
     Hosts:
-      - 127.0.0.1:2379
+      - 192.168.160.128:2379
     Key: search.rpc
 QuestionsRpc:
   Etcd:
     Hosts:
-      - 127.0.0.1:2379
+      - 192.168.160.128:2379
     Key: questions.rpc

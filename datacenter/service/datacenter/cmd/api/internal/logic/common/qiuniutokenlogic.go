@@ -2,6 +2,10 @@ package logic
 
 import (
 	"context"
+	"github.com/qiniu/api.v7/v7/auth"
+	"github.com/qiniu/api.v7/v7/storage"
+	"go-zero-demo/datacenter/common/shared"
+	"go-zero-demo/datacenter/service/common/cmd/rpc/commonclient"
 
 	"go-zero-demo/datacenter/service/datacenter/cmd/api/internal/svc"
 	"go-zero-demo/datacenter/service/datacenter/cmd/api/internal/types"
@@ -24,7 +28,24 @@ func NewQiuniuTokenLogic(ctx context.Context, svcCtx *svc.ServiceContext) Qiuniu
 }
 
 func (l *QiuniuTokenLogic) QiuniuToken(req types.Beid) (*types.Token, error) {
-	// todo: add your logic here and delete this line
+	repl, err := l.svcCtx.CommonRpc.GetAppConfig(l.ctx, &commonclient.AppConfigReq{
+		Beid:  req.Beid,
+		Ptyid: shared.QiuniuPtyId,
+	})
 
-	return &types.Token{}, nil
+	if err != nil {
+		return nil, err
+	}
+	//请求七牛
+	// 简单上传凭证
+	putPolicy := storage.PutPolicy{
+		Scope: "tanzi-datacenter",
+	}
+	mac := auth.New(repl.Appid, repl.Appsecret)
+
+	upToken := putPolicy.UploadToken(mac)
+
+	return &types.Token{
+		Token: upToken,
+	}, nil
 }

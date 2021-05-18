@@ -24,7 +24,15 @@ func NewGetBaseAppLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetBas
 }
 
 func (l *GetBaseAppLogic) GetBaseApp(in *common.BaseAppReq) (*common.BaseAppResp, error) {
-	// todo: add your logic here and delete this line
+	repl, err := l.svcCtx.BaseAppModel.FindOne(in.Beid)
+	if err != nil {
+		return nil, err
+	}
 
-	return &common.BaseAppResp{}, nil
+	return &common.BaseAppResp{
+		Beid:        repl.Id,
+		Logo:        repl.Logo,
+		Fullwebsite: repl.Fullwebsite,
+		Isclose:     repl.Isclose,
+	}, nil
 }
