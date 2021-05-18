@@ -2,6 +2,11 @@ package logic
 
 import (
 	"context"
+	"github.com/dgrijalva/jwt-go"
+	"go-zero-demo/book/common/errorx"
+	"go-zero-demo/book/service/user/model"
+	"strings"
+	"time"
 
 	"go-zero-demo/book/service/user/cmd/api/internal/svc"
 	"go-zero-demo/book/service/user/cmd/api/internal/types"
@@ -24,7 +29,49 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) LoginLogic {
 }
 
 func (l *LoginLogic) Login(req types.LoginReq) (*types.LoginReply, error) {
-	// todo: add your logic here and delete this line
+	if len(strings.TrimSpace(req.Username)) == 0 || len(strings.TrimSpace(req.Password)) == 0 {
+		return nil, errorx.NewDefaultError("参数错误")
+	}
 
-	return &types.LoginReply{}, nil
+	userInfo, err := l.svcCtx.UserModel.FindOneByUsername(req.Username)
+	switch err {
+	case nil:
+	case model.ErrNotFound:
+		return nil, errorx.NewDefaultError("用户名不存在")
+	default:
+		return nil, err
+	}
+
+	if userInfo.Password != req.Password {
+		return nil, errorx.NewDefaultError("用户密码不正确")
+	}
+
+	// ---start---
+	now := time.Now().Unix()
+	accessExpire := l.svcCtx.Config.Auth.AccessExpire
+	jwtToken, err := l.getJwtToken(l.svcCtx.Config.Auth.AccessSecret, now, l.svcCtx.Config.Auth.AccessExpire, userInfo.Id)
+	if err != nil {
+		return nil, err
+	}
+	// ---end---
+
+	return &types.LoginReply{
+		Id:           userInfo.Id,
+		Name:         userInfo.Name,
+		Gender:       userInfo.Gender,
+		AccessToken:  jwtToken,
+		AccessExpire: now + accessExpire,
+		RefreshAfter: now + accessExpire/2,
+	}, nil
+}
+
+//根据安全码，过期时间，用户id生成一个token
+func (l *LoginLogic) getJwtToken(secretKey string, iat, seconds, userId int64) (string, error) {
+	claims := make(jwt.MapClaims)
+	claims["exp"] = iat + seconds
+	claims["iat"] = iat
+	claims["userId"] = userId
+	token := jwt.New(jwt.SigningMethodHS256)
+	token.Claims = claims
+	return token.SignedString([]byte(secretKey))
 }

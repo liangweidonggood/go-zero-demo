@@ -18,7 +18,7 @@
 
 ## 系统分析
 ### 服务拆分
-* user
+* user 
     * api 提供用户登录协议
     * rpc 供search服务访问用户数据
 * search

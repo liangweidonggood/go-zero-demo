@@ -36,3 +36,92 @@ goctl rpc proto -src xxx.proto -dir .
 -c表示使用 redis cache
 goctl model mysql ddl -c -src xxx.sql -dir .
 ```
+# 项目目录示例
+```
+mall // 工程名称
+├── common // 通用库
+│   ├── randx
+│   └── stringx
+├── go.mod
+├── go.sum
+└── service // 服务存放目录
+    ├── afterSale
+    │   ├── cmd
+    │   │   ├── api
+    │   │   └── rpc
+    │   └── model
+    ├── cart
+    │   ├── cmd
+    │   │   ├── api
+    │   │   └── rpc
+    │   └── model
+    ├── order
+    │   ├── cmd
+    │   │   ├── api
+    │   │   └── rpc
+    │   └── model
+    ├── pay
+    │   ├── cmd
+    │   │   ├── api
+    │   │   └── rpc
+    │   └── model
+    ├── product
+    │   ├── cmd
+    │   │   ├── api
+    │   │   └── rpc
+    │   └── model
+    └── user
+        ├── cmd
+        │   ├── api
+        │   ├── cronjob
+        │   ├── rmq
+        │   ├── rpc
+        │   └── script
+        └── model
+```
+
+# api目录
+```
+.
+├── etc
+│   └── greet-api.yaml              // 配置文件
+├── go.mod                          // mod文件
+├── greet.api                       // api描述文件
+├── greet.go                        // main函数入口
+└── internal                        
+    ├── config  
+    │   └── config.go               // 配置声明type
+    ├── handler                     // 路由及handler转发
+    │   ├── greethandler.go
+    │   └── routes.go
+    ├── logic                       // 业务逻辑
+    │   └── greetlogic.go
+    ├── middleware                  // 中间件文件
+    │   └── greetmiddleware.go
+    ├── svc                         // logic所依赖的资源池
+    │   └── servicecontext.go
+    └── types                       // request、response的struct，根据api自动生成，不建议编辑
+        └── types.go
+```
+# rpc目录
+```
+.
+├── etc             // yaml配置文件
+│   └── greet.yaml
+├── go.mod
+├── greet           // pb.go文件夹①
+│   └── greet.pb.go
+├── greet.go        // main函数
+├── greet.proto     // proto 文件
+├── greetclient     // call logic ②
+│   └── greet.go
+└── internal        
+    ├── config      // yaml配置对应的实体
+    │   └── config.go
+    ├── logic       // 业务代码
+    │   └── pinglogic.go
+    ├── server      // rpc server
+    │   └── greetserver.go
+    └── svc         // 依赖资源
+        └── servicecontext.go
+```
