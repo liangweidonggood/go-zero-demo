@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"go-zero-demo/datacenter/service/questions/cmd/rpc/questionsclient"
 
 	"go-zero-demo/datacenter/service/datacenter/cmd/api/internal/svc"
 	"go-zero-demo/datacenter/service/datacenter/cmd/api/internal/types"
@@ -23,7 +24,7 @@ func NewActivitiesInfoLogic(ctx context.Context, svcCtx *svc.ServiceContext) Act
 	}
 }
 
-func (l *ActivitiesInfoLogic) ActivitiesInfo(req types.Actid) (*types.ActivityResp, error) {
+func (l *ActivitiesInfoLogic) ActivitiesInfo(req questionsclient.ActivitiesReq) (*types.ActivityResp, error) {
 	// todo: add your logic here and delete this line
 
 	return &types.ActivityResp{}, nil

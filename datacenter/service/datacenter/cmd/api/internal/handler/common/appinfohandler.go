@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"go-zero-demo/datacenter/common/shared"
 	"net/http"
 
 	"go-zero-demo/datacenter/service/datacenter/cmd/api/internal/logic/common"
@@ -23,7 +24,8 @@ func AppInfoHandler(ctx *svc.ServiceContext) http.HandlerFunc {
 		if err != nil {
 			httpx.Error(w, err)
 		} else {
-			httpx.OkJson(w, resp)
+			//httpx.OkJson(w, resp)
+			shared.OkJson(w, resp)
 		}
 	}
 }
