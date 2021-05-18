@@ -1,3 +1,27 @@
+# 此文件对应internal/config/config.go
+
 Name: user-api
 Host: 0.0.0.0
 Port: 8888
+
+Mysql:
+  DataSource: root:123@tcp(192.168.230.129:3306)/gozero-book?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+CacheRedis:
+  - Host: 192.168.230.129:6379
+    Pass: "ZZkde@#3d99"
+Auth:
+  AccessSecret: ad879037-c7a4-4063-9236-6bfc35d54b7f
+  AccessExpire: 86400 #秒
+
+#log
+#  ServiceName         string `json:",optional"`
+#  Mode                string `json:",default=console,options=console|file|volume"`
+#  TimeFormat          string `json:",optional"`
+#  Path                string `json:",default=logs"`
+#  Level               string `json:",default=info,options=info|error|severe"`
+#  Compress            bool   `json:",optional"` 是否需要压缩，默认值为 false 压缩成 .gz 文件
+#  KeepDays            int    `json:",optional"` 最大保留天数，默认值为 0
+#  StackCooldownMillis int    `json:",default=100"` 日志输出间隔，默认为 100 毫秒
+Logx:
+  Mode: file
+
