@@ -10,3 +10,10 @@ goctl api -o user.api
 goctl api go -api user.api -dir .
 
 goctl rpc proto -src user.proto -dir .
+```
+### 生成model
+
+```
+goctl model mysql datasource -url="root:123@tcp(192.168.160.128:3306)/gozero-datacenter" -table="app_user" -dir ./model -c
+goctl model mysql datasource -url="root:123@tcp(192.168.160.128:3306)/gozero-datacenter" -table="base_member" -dir ./model -c
+```

@@ -191,7 +191,7 @@ CREATE TABLE `base_member` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='中台用户表';
 
 
---- 加入问答抽奖
+-- 加入问答抽奖
 
 
 -- ----------------------------
