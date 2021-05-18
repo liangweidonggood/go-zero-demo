@@ -1,6 +1,10 @@
 package config
 
-import "github.com/tal-tech/go-zero/rest"
+import (
+	"github.com/tal-tech/go-zero/core/stores/cache"
+	"github.com/tal-tech/go-zero/rest"
+	"github.com/tal-tech/go-zero/zrpc"
+)
 
 type Config struct {
 	rest.RestConf
@@ -8,4 +12,12 @@ type Config struct {
 		AccessSecret string
 		AccessExpire int64
 	}
+	//新增
+	UserRpc      zrpc.RpcClientConf
+	CommonRpc    zrpc.RpcClientConf
+	VotesRpc     zrpc.RpcClientConf
+	SearchRpc    zrpc.RpcClientConf
+	QuestionsRpc zrpc.RpcClientConf
+
+	CacheRedis cache.ClusterConf
 }
