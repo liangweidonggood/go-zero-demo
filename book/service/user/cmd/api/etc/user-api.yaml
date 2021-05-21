@@ -24,4 +24,5 @@ Auth:
 #  StackCooldownMillis int    `json:",default=100"` 日志输出间隔，默认为 100 毫秒
 Logx:
   Mode: file
+  KeepDays: 30   #保留30天
 

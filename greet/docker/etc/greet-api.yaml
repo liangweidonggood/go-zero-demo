@@ -1,0 +1,6 @@
+Name: greet-api
+Host: 0.0.0.0
+Port: 8888
+Logx:
+  Mode: file
+  KeepDays: 30   #保留30天

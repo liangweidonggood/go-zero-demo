@@ -61,7 +61,12 @@ func (l *GreetLogic) Greet(req types.Request) (*types.Response, error) {
 }
 
 ```
+# 部署到docker
+- 生成Dockerfile
+```
+编译
 
+```
 
 
 

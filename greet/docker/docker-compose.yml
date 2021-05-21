@@ -1,0 +1,15 @@
+version: "3"
+services:
+  greet:
+    image: go-scratch:1.0.0
+    container_name: greet
+    restart: always
+    ports:
+      - 8888:8888
+    volumes:
+    - /home/project/greet/etc/greet-api.yaml:/app/etc/greet-api.yaml
+    - /home/project/greet/logs:/app/logs
+    - /home/project/greet/main:/app/main
+    - /etc/timezone:/etc/timezone:ro
+    - /etc/localtime:/etc/localtime:ro
+    command: ./main -f etc/greet-api.yaml
