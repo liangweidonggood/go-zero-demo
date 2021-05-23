@@ -19,6 +19,9 @@ GOARCH：32位系统为386，64位系统为amd64
 ```
 FROM scratch
 WORKDIR /app
+
+构建基本镜像
+docker build -t go-scratch:1.0.0 .
 ```
 ## 3 编写docker-compose.yml
 ```
@@ -42,8 +45,6 @@ services:
 ```
 重要
 chmod +x main
-
-docker build -t go-scratch:1.0.0 .
 
 docker-compose up -d
 
