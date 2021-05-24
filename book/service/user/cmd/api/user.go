@@ -52,7 +52,7 @@ func main() {
 go run user.go -f etc/user-api.yaml
 测试jwt
 curl -i -X POST \
-    http://127.0.0.1:8888/user/login \
+    http://127.0.0.1:8884/user/login \
     -H 'content-type: application/json' \
     -d '{
       "username":"zs666",

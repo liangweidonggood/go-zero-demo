@@ -2,7 +2,7 @@
 
 Name: user-api
 Host: 0.0.0.0
-Port: 8888
+Port: 8884
 
 Mysql:
   DataSource: root:123@tcp(192.168.230.129:3306)/gozero-book?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
@@ -23,6 +23,7 @@ Auth:
 #  KeepDays            int    `json:",optional"` 最大保留天数，默认值为 0
 #  StackCooldownMillis int    `json:",default=100"` 日志输出间隔，默认为 100 毫秒
 Logx:
-  Mode: file
+  #Mode: file
   KeepDays: 30   #保留30天
+
 
