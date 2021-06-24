@@ -38,6 +38,9 @@ goctl rpc proto -src xxx.proto -dir .
 3.生成代码
 -c表示使用 redis cache
 goctl model mysql ddl -c -src xxx.sql -dir .
+
+或者
+goctl model mysql datasource -url="root:123@tcp(192.168.160.128:3306)/gozero-datacenter" -table="base_app" -dir ./model -c
 ```
 # 项目目录示例
 ```
