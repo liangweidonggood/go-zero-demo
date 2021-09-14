@@ -2,11 +2,11 @@ Name: transform.rpc
 ListenOn: 127.0.0.1:8080
 Etcd:
   Hosts:
-    - 192.168.230.129:2379
+    - 192.168.149.128:2379
   Key: transform.rpc
 #数据库和redis缓存配置
-DataSource: root:123@tcp(192.168.230.129:3306)/gozero
+DataSource: root:123@tcp(192.168.149.128:3306)/test
 Table: shorturl
 Cache:
-  - Host: 192.168.230.129:6379
+  - Host: 192.168.149.128:6379
     Pass: "ZZkde@#3d99"
